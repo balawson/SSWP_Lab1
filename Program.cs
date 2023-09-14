@@ -26,15 +26,19 @@ namespace SSWP_Lab1
 
             for (int i = 0; i < games.Count; i++)
             {
+                games.Sort();
                 Console.WriteLine(games[i]);
             }
+
+            
+            
 
             Console.ReadKey();
             
         }
 
 
-        public class VideoGame
+        public class VideoGame : IComparable<VideoGame>
         {
             public string Name { get; set; }
             public string Platform { get; set; }
@@ -63,11 +67,19 @@ namespace SSWP_Lab1
                 this.Global_Sales = Convert.ToDouble(data[9]);
             }
 
+            public int CompareTo(VideoGame obj)
+            {
+                return Name.CompareTo(obj.Name);
+
+            }
+
             public override string ToString()
             {
                 string str = $"{Name}" + $", {Platform}" + $", {Year}" + $", {Genre}" + $", {Publisher}" + $", {NA_Sales}" + $", {EU_Sales}" + $", {JP_Sales}" + $", {Other_Sales}" + $", {Global_Sales}";
                 return str;
             }
+
+
             
         }
 
